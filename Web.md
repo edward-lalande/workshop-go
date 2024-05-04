@@ -9,6 +9,9 @@ Nous allons commencer par établir les bases avec une simple route "Hello World"
 
 Suivez attentivement les instructions et n'hésitez pas à poser des questions si quelque chose n'est pas clair. À la fin de ces exercices, vous aurez acquis les connaissances nécessaires pour développer une application de messagerie en ligne fonctionnelle.
 
+Afin de tester vos routes je vous invite a utiliser la comande ```curl``` ou bien un navigateur.
+Vos backend devrons être en localhost sur le port 8080
+
 #### Installation du Go
 
 Si le go n'es pas installer sur votre ordinateur je vous invite a aller lire le README.md
