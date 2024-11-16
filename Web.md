@@ -1,60 +1,160 @@
+### **Initiation au Développement Web avec Gin**
 
-# Developpement Web en Go avec Gin
+### **Pré-requis :**  
+- Installer Gin :  
+  ```bash
+  go get -u github.com/gin-gonic/gin
+  ```
 
-## Introduction
+---
 
-Bienvenue dans cet ensemble d'exercices qui vous guidera à travers la création d'une application de messagerie en ligne avec l'utilisation du framework Gin pour Go et une base de données PostgreSQL. En suivant ces exercices, vous serez en mesure de créer une application capable de gérer l'inscription des utilisateurs, l'authentification, ainsi que l'envoi, la récupération, la mise à jour et la suppression de messages.
+## **Chapitre 1 : Premiers pas avec Gin**
 
-Nous allons commencer par établir les bases avec une simple route "Hello World" à l'aide de Gin, puis nous allons créer une base de données PostgreSQL avec une table pour les utilisateurs et une autre pour les messages. Ensuite, nous ajouterons des routes pour permettre l'inscription des utilisateurs, leur connexion, ainsi que la gestion des messages.
+### **Exercice 1 : Configuration de base**  
+- Implémentez une application simple :  
+  - Configurez un serveur Gin avec une route GET `/ping`.  
+  - La route doit retourner la réponse JSON suivante :  
+    ```json
+    {"message": "pong"}
+    ```
+    (avouez que la blague est drôle)
+---
 
-Suivez attentivement les instructions et n'hésitez pas à poser des questions si quelque chose n'est pas clair. À la fin de ces exercices, vous aurez acquis les connaissances nécessaires pour développer une application de messagerie en ligne fonctionnelle.
+### **Exercice 2 : Paramètres dynamiques**  
+- Ajoutez une route GET `/hello/:name`.  
+  - La route doit retourner une salutation personnalisée en JSON :  
+    ```json
+    {"message": "Hello, <name>!"}
+    ```  
+  - Remplacez `<name>` par le paramètre passé dans l'URL.  
 
-Afin de tester vos routes je vous invite a utiliser la comande ```curl``` ou bien un navigateur.
-Vos backend devrons être en localhost sur le port 8080
+---
 
-#### Installation du Go
+### **Exercice 3 : Query Parameters**  
+- Ajoutez une route GET `/sum`.  
+  - Cette route accepte deux paramètres de requête `a` et `b` (entiers).  
+  - Retourne la somme des deux nombres en JSON, ou une erreur si l'un des paramètres est manquant.  
 
-Si le go n'es pas installer sur votre ordinateur je vous invite a aller lire le README.md
-
-#### Installation de Gin
-```bash
-    go get -u github.com/gin-gonic/gin
+**Exemple :**  
+Requête : `/sum?a=10&b=5`  
+Réponse :  
+```json
+{"result": 15}
 ```
 
-Exercice 1: Créer votre premiere route hello World nomée ("/hello")
+---
 
-Exercice 2: Créer une table de User en SQL postgres comportant un login et un mdp en string, utiliser le package gin pour écrire sur la DataBase
-*Command pour lancer une DB postgres*
-```bash
-    sudo docker run --name "name-of-your-DB"" -e POSTGRES_PASSWORD=password -e POSTGRES_USER=root -e POSTGRES_DB="name-of-your-DB"" -p 5432:5432 -v "$(pwd)"/"name-of-your-DB"".sql:/docker-entrypoint-initdb.d/init.sql -d postgres:alpine
+## **Chapitre 2 : Sérialisation et gestion des données**
+
+### **Exercice 4 : Création d’un utilisateur**  
+- Implémentez une route POST `/users` :  
+  - Cette route reçoit un JSON avec les champs `name` et `email`.  
+  - Retourne un objet `User` créé avec un ID unique et un message de succès.  
+
+**Exemple de requête :**  
+```json
+{
+  "name": "Alice",
+  "email": "alice@example.com"
+}
+```  
+
+**Exemple de réponse :**  
+```json
+{
+  "id": 1,
+  "name": "Alice",
+  "email": "alice@example.com",
+  "message": "User created successfully"
+}
 ```
 
-**/!\ | les routes nous renvoie un success ou une erreur en suivant la norme HTTP avec le message pour message l'id de la personnes connecter**
+---
 
-Exercice 3: Créer une route ("/sign-up") qui sera une route pour s'inscrire a la DataBase
-*Query Sql pour insérer*
-```sql
-    INSERT INTO
+### **Exercice 5 : Liste des utilisateurs**  
+- Implémentez une route GET `/users`.  
+  - Retourne la liste des utilisateurs créés sous forme de tableau JSON.  
+
+---
+
+### **Exercice 6 : Récupération d’un utilisateur par ID**  
+- Ajoutez une route GET `/users/:id`.  
+  - Retourne l'utilisateur correspondant à l’ID fourni.  
+  - Si l’utilisateur n’existe pas, retournez une erreur 404 avec un message JSON :  
+    ```json
+    {"error": "User not found"}
+    ```
+
+---
+
+## **Chapitre 3 : Gestion avancée des routes**
+
+### **Exercice 7 : Mise à jour d’un utilisateur**  
+- Implémentez une route PUT `/users/:id`.  
+  - Permet de modifier les champs `name` et `email` d’un utilisateur existant.  
+  - Retourne les données mises à jour ou une erreur si l’utilisateur n’existe pas.  
+
+---
+
+### **Exercice 8 : Suppression d’un utilisateur**  
+- Ajoutez une route DELETE `/users/:id`.  
+  - Supprime l’utilisateur correspondant à l’ID fourni.  
+  - Retourne un message de confirmation ou une erreur si l’utilisateur n’existe pas.  
+
+**Exemple de réponse :**  
+```json
+{"message": "User deleted successfully"}
 ```
 
-Exercice 4: Créer une route ("/login") pour se connecter
-*Query Sql pour séléctionner*
-```sql
-    SELECT FROM
+---
+
+## **Chapitre 4 : Middlewares et erreurs**
+
+### **Exercice 9 : Middleware de journalisation**  
+- Ajoutez un middleware qui affiche dans la console les informations suivantes pour chaque requête :  
+  - Méthode HTTP (GET, POST, etc.).  
+  - Chemin de la route.  
+  - Code de statut de la réponse.  
+
+---
+
+### **Exercice 10 : Validation des données**  
+- Mettez à jour la route POST `/users` :  
+  - Retournez une erreur 400 si les champs `name` ou `email` sont manquants.  
+  - Le message d'erreur doit être clair, comme :  
+    ```json
+    {"error": "Name and email are required"}
+    ```
+
+---
+
+## **Chapitre 5 : Cas pratiques**
+
+### **Exercice 11 : Gestion d’un système de tâches**  
+- Implémentez un système CRUD pour des tâches (`Task`) avec les routes suivantes :  
+  - POST `/tasks` : Crée une tâche.  
+  - GET `/tasks` : Liste toutes les tâches.  
+  - GET `/tasks/:id` : Récupère une tâche par ID.  
+  - PUT `/tasks/:id` : Met à jour une tâche.  
+  - DELETE `/tasks/:id` : Supprime une tâche.  
+
+Chaque tâche doit avoir les champs :  
+```go
+type Task struct {
+    ID       int    `json:"id"`
+    Title    string `json:"title"`
+    Done     bool   `json:"done"`
+}
 ```
 
-Exercice 5: Maintenant créer une nouvelle dataBase message qui comportera un MessageId, un UserID, le Content du message et la date 
+---
 
-Exercice 6: Créer une route pour ajouter un nouveau message à la base de données.
+### **Exercice 12 : Déploiement et test final**  
+- Configurez une route GET `/health` pour vérifier si le serveur fonctionne correctement :  
+  - Retourne :  
+    ```json
+    {"status": "OK"}
+    ```  
+- Déployez l’application localement et testez toutes les routes avec **Postman** ou **cURL**.  
 
-Exercice 7: Créer une route pour récupérer tous les messages d'un utilisateur donné.
-
-Exercice 8: Créer une route pour récupérer tous les messages de la base de données.
-
-Exercice 9: Créer une route pour supprimer un message spécifique.
-
-Exercice 10: Créer une route pour mettre à jour le contenu d'un message spécifique.
-
-Exercice 11: Créer une route pour récupérer un message spécifique en fonction de son ID.
-
-Exercice 12: **Bonus** Bravo vous avez finis, laissez place a votre créativité et au front pour donner vie a votre messagerie 
+---

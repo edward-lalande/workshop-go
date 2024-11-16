@@ -1,35 +1,91 @@
-## Bon bon bon...
-`Passons aux choses sérieuse, ces petits exercice vous permettrons de comprendre les bases du Go alors bon courage:`
+### **Initiation au GoLang avec Gestion des Erreurs**  
 
-1 - Addition simple :
-Écrivez un programme Go qui prend deux nombres entiers en entrée et affiche leur somme.
+## **Chapitre 1 : Premiers pas avec les fonctions**
 
-2 - Vérification de nombre pair/impaire :
-Écrivez un programme Go qui prend un nombre entier en entrée et détermine s'il est pair ou impair.
+### **Exercice 1 : Addition sécurisée**
+- Créez une fonction `Add(a int, b int) (int, error)` :  
+  - Retourne la somme de `a` et `b`.  
+  - Retourne une erreur si l'un des nombres est négatif.  
 
-3 - Calcul de la factorielle :
-Écrivez un programme Go qui calcule la factorielle d'un nombre entier positif.
+**Exemple :**
+```go
+result, err := Add(5, -3)
+```
 
-4 - Conversion de température :
-Écrivez un programme Go qui convertit une température donnée en degrés Celsius en degrés Fahrenheit.
+---
 
-5 - Recherche de nombres premiers :
-Écrivez un programme Go qui trouve tous les nombres premiers jusqu'à un certain nombre donné.
+### **Exercice 2 : Division avec gestion des erreurs**
+- Implémentez une fonction `Divide(a float64, b float64) (float64, error)` :  
+  - Retourne le résultat de `a / b`.  
+  - Retourne une erreur si `b` est égal à zéro.  
 
-6 - Calcul de la somme des chiffres :
-Écrivez un programme Go qui calcule la somme des chiffres d'un nombre entier.
+---
 
-7 - Vérification de palindrome :
-Écrivez un programme Go qui vérifie si un mot donné est un palindrome.
+### **Exercice 3 : Longueur d’une chaîne**
+- Créez une fonction `StringLength(s string) (int, error)` :  
+  - Retourne la longueur de la chaîne.  
+  - Retourne une erreur si la chaîne est vide.  
 
-8 - Calcul du PGCD :
-Écrivez un programme Go qui calcule le Plus Grand Commun Diviseur (PGCD) de deux nombres donnés.
+---
 
-9 - Tri d'une liste d'entiers :
-Écrivez un programme Go qui trie une liste d'entiers donnée dans l'ordre croissant.
+## **Chapitre 2 : Gestion des erreurs et types personnalisés**
 
-10 - Jeu de devinettes :
-Écrivez un programme Go qui génère un nombre aléatoire entre 1 et 100, puis permet à l'utilisateur de deviner ce nombre. Le programme doit donner des indications sur la direction dans laquelle l'utilisateur doit ajuster sa devin
+### **Exercice 4 : Vérification d’âge**
+- Implémentez une fonction `CheckAge(age int) (bool, error)` :  
+  - Retourne `true` si l’âge est supérieur ou égal à 18.  
+  - Retourne une erreur si l’âge est négatif.  
 
-11 - BONUS
-Vous connaissez my_str_to_word_array ?
+---
+
+### **Exercice 5 : Récupération d’un élément dans un tableau**  
+- Implémentez une fonction `GetElementAtIndex(arr []int, index int) (int, error)` :  
+  - Retourne l’élément à l’index spécifié.  
+  - Retourne une erreur si l’index est hors limites.  
+
+---
+
+### **Exercice 6 : Conversion d’un entier en chaîne**  
+- Créez une fonction `IntToString(n int) (string, error)` :  
+  - Retourne la représentation en chaîne de `n`.  
+  - Retourne une erreur si `n` est négatif.  
+
+---
+
+## **Chapitre 3 : Applications pratiques**
+
+### **Exercice 7 : Calcul de la moyenne d’une liste de nombres**  
+- Implémentez une fonction `Average(numbers []float64) (float64, error)` :  
+  - Retourne la moyenne des nombres donnés.  
+  - Retourne une erreur si la liste est vide.  
+
+---
+
+### **Exercice 8 : Vérification d’un mot de passe**  
+- Créez une fonction `ValidatePassword(password string) (bool, error)` :  
+  - Retourne `true` si le mot de passe a au moins 8 caractères.  
+  - Retourne une erreur si le mot de passe contient des espaces.  
+
+---
+
+### **Exercice 9 : Recherche d’une valeur dans un tableau**  
+- Implémentez une fonction `FindInArray(arr []string, target string) (int, error)` :  
+  - Retourne l’index de la première occurrence de `target`.  
+  - Retourne une erreur si `target` n’est pas trouvé.  
+
+---
+
+## **Chapitre 4 : Fonctionnalités avancées**
+
+### **Exercice 10 : Lecture d’un fichier**  
+- Implémentez une fonction `ReadFile(filepath string) ([]byte, error)` :  
+  - Lit le contenu d’un fichier et le retourne sous forme de tableau d’octets.  
+  - Retourne une erreur si le fichier n’existe pas.  
+
+---
+
+### **Exercice 11 : Recherche d’un mot clé dans un fichier**  
+- Créez une fonction `SearchInFile(filepath string, keyword string) (bool, error)` :  
+  - Retourne `true` si le mot clé est trouvé dans le fichier.  
+  - Retourne une erreur si le fichier est vide.  
+
+---
