@@ -46,7 +46,7 @@
    - Implémentez une fonction `NewEmployee(name string, position string)` qui retourne un `Employee` avec des champs initialisés.
 
 10. **Pattern Singleton :**
-    - Créez une struct `Database` avec un champ `connections` (liste de chaînes).
+    - Créez une struct `Database` avec un champ `connections` (liste chaînés).
     - Implémentez un singleton pour gérer les connexions à une base de données simulée.
 
 11. **Décorateurs avec composition :**
